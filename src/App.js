@@ -18,9 +18,9 @@ function App() {
         <Route path="/">
           <Header/>
           <div className="hero-container">
-          <Link to="/pizza">
-            <button className="pizza-button">Pizza?!</button>
-          </Link>
+            <Link to="/pizza">
+              <button className="pizza-button">Pizza?!</button>
+            </Link>
           </div>
           <Cards/>
         </Route>

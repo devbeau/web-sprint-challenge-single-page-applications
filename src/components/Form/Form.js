@@ -22,9 +22,9 @@ const ingredients = [
 const initialFormValues = {
     size: '',
     sauce: '',
-    toppings: ingredients.reduce((ret, item)=> {
-        return ret = {...ret, [item]: false};
-    }, {}),
+    toppings:   ingredients.reduce((ret, item)=> {
+                    return ret = {...ret, [item]: false};
+                }, {}),
     gluten: false,
     name: '',
     special: '',
@@ -94,124 +94,121 @@ function Form(props) {
     return (
      
         <div className='form-container'>
-
             <FormHeader/>
-        
             <form className='byo-pizza-form' onSubmit={onSubmit}>
-
                 <h2 className='form-heading'>Build Your Own Pizza</h2>
                 <Switch>    
-                    
-
-                <Route path="/pizza/sauce">
-                    <label>Choice of Sauce</label>
-                    {sauces.map((item, ind) => {
-                    return (
-                            <div key={`${item}-${ind}`}>  
-                                <input
-                                    type='radio'
-                                    id={item.split(' ').join('-').toLowerCase()}
-                                    name='sauce'
-                                    value={formValues.sauce}
-                                    onChange={onChange}
-                                /> 
-                                <label
-                                    htmlFor={item.split(' ').join('-').toLowerCase()}
-                                >
-                                    {item}
-                                </label>
-                    
-                            </div>
-                    )
-                    })}
-                    <Link to="/pizza/"><button>Back</button></Link>
-                    <Link to="/pizza/toppings"><button>Next</button></Link>
-                </Route>
-
-                <Route path="/pizza/toppings">
-                    <label>Add Toppings</label>
-                    <small>Choose up to 10</small>
-                    {ingredients.map((item, ind) => {
+                
+                    <Route path="/pizza/sauce">
+                        <label>Choice of Sauce</label>
+                        {sauces.map((item, ind) => {
                         return (
-                            <div key={`${item}-${ind}`}>
+                                <div key={`${item}-${ind}`}>  
+                                    <input
+                                        type='radio'
+                                        id={item.split(' ').join('-').toLowerCase()}
+                                        name='sauce'
+                                        value={item}
+                                        onChange={onChange}
+                                    /> 
+                                    <label
+                                        htmlFor={item.split(' ').join('-').toLowerCase()}
+                                    >
+                                        {item}
+                                    </label>
+                        
+                                </div>
+                        )
+                        })}
+                        <Link to="/pizza/"><button>Back</button></Link>
+                        <Link to="/pizza/toppings"><button>Next</button></Link>
+                    </Route>
+
+                    <Route path="/pizza/toppings">
+                        <label>Add Toppings</label>
+                        <small>Choose up to 10</small>
+                        {ingredients.map((item, ind) => {
+                            return (
+                                <div key={`${item}-${ind}`}>
+                                    <input
+                                        type='checkbox'
+                                        id={item.split(' ').join('-').toLowerCase()}
+                                        name={item}
+                                        checked={formValues.toppings[item]}
+                                        onChange={onIngredientChange}
+                                    /> 
+                                    <label htmlFor="original">{item}</label>
+                                </div>
+                            )
+                        })}
+                        
+                        <label htmlFor='gluten'>Choice of Substitute</label>
+                        <small>Choose up to 1</small>
+                        <div className='gluten-container'>
+                            <label className="switch">
                                 <input
                                     type='checkbox'
-                                    id={item.split(' ').join('-').toLowerCase()}
-                                    name={item}
-                                    checked={formValues.toppings[item]}
-                                    onChange={onIngredientChange}
-                                /> 
-                                <label htmlFor="original">{item}</label>
-                            </div>
-                        )
-                    })}
-                    
-                    
-                    <label htmlFor='gluten'>Choice of Substitute</label>
-                    <small>Choose up to 1</small>
-                    <div className='gluten-container'>
-                        <label className="switch">
-                            <input
-                                type='checkbox'
-                                id='gluten'
-                                name='gluten'
-                                checked={formValues.gluten}
-                                onChange={onCheckboxChange}
-                            />
-                            <span className='slider'></span>
-                        </label>
-                        <span>Gluten Free Crust for (+$1.00)</span>
-                    </div>
-                    <Link to="/pizza/sauce"><button>Back</button></Link>
-                    <Link to="/pizza/submit"><button>Next</button></Link>
-                </Route>
-                <Route path="/pizza/submit">
-                <label htmlFor='name'>Name</label>
-                <input
-                    type='text'
-                    id='name'
-                    name='name'
-                    value={formValues.name}
-                    placeholder='Enter your Name'
-                    onChange={onChange}
-                />
-                <label htmlFor='special'>Special Instructions!</label>
-                <input
-                    type='text'
-                    id='special'
-                    name='special'
-                    value={formValues.special}
-                    placeholder='Any instructions for your order?'
-                    onChange={onChange}
-                />
-
-                <div className="button-container">
-                    <button className="submit-button" disabled={disabled}>
-                        Add to Order
-                    </button>
-                    {error && <p style={{color: 'red'}}>{error}</p>}
-                </div>
-                <Link to="/pizza/toppings"><button>Back</button></Link>
-                </Route>
-                <Route path="/pizza/">
-                        <div className='size-container'>
-                            <label htmlFor='size'>Choice of Size</label>
-                            <small>Required</small>
-                            <select
-                            id='size'
-                            name='size'
-                            value={formValues.size}
-                            onChange={onChange}
-                            >
-                                <option value="small">Small</option>
-                                <option value="medium">Medium</option>
-                                <option value="large">Large</option>
-                                <option value="extra-large">Extra Large</option>
-                            </select>
-                            <Link to="/pizza/sauce"><button>Next</button></Link>
+                                    id='gluten'
+                                    name='gluten'
+                                    checked={formValues.gluten}
+                                    onChange={onCheckboxChange}
+                                />
+                                <span className='slider'></span>
+                            </label>
+                            <span>Gluten Free Crust for (+$1.00)</span>
                         </div>
+                        <Link to="/pizza/sauce"><button>Back</button></Link>
+                        <Link to="/pizza/submit"><button>Next</button></Link>
                     </Route>
-            </Switch>
+
+                    <Route path="/pizza/submit">
+                        <label htmlFor='name'>Name</label>
+                        <input
+                            type='text'
+                            id='name'
+                            name='name'
+                            value={formValues.name}
+                            placeholder='Enter your Name'
+                            onChange={onChange}
+                        />
+                        <label htmlFor='special'>Special Instructions!</label>
+                        <input
+                            type='text'
+                            id='special'
+                            name='special'
+                            value={formValues.special}
+                            placeholder='Any instructions for your order?'
+                            onChange={onChange}
+                        />
+
+                        <div className="button-container">
+                            <button className="submit-button" disabled={disabled}>
+                                Add to Order
+                            </button>
+                            {error && <p style={{color: 'red'}}>{error}</p>}
+                        </div>
+                        <Link to="/pizza/toppings"><button>Back</button></Link>
+                    </Route>
+
+                    <Route path="/pizza/">
+                            <div className='size-container'>
+                                <label htmlFor='size'>Choice of Size</label>
+                                <small>Required</small>
+                                <select
+                                id='size'
+                                name='size'
+                                value={formValues.size}
+                                onChange={onChange}
+                                >
+                                    <option value="small">Small</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="large">Large</option>
+                                    <option value="extra-large">Extra Large</option>
+                                </select>
+                                <Link to="/pizza/sauce"><button>Next</button></Link>
+                            </div>
+                    </Route>
+                </Switch>
             </form>
         </div>
     )
