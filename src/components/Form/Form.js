@@ -71,10 +71,13 @@ function Form(props) {
     useEffect(() => {
         if (order){
             console.log(order)
-            axios.post('https://reqres.in/api/users', order)
+            axios.post('https://reres.in/api/users', order)
                 .then(response => {
                   setConfirm(response.data)
                     console.log(response);
+                })
+                .catch(error => {
+                    setError('There appears to be a network error')
                 })
         }
     }, [order, setConfirm])
