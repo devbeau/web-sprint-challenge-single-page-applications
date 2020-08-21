@@ -31,9 +31,11 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question.
 
 1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
+useRouteMatch allows you to access the match object
 1. How would you explain form validation to someone who has never programmed before?
+form validation ensures that the information that you enter into a form online conforms to what the server that processes the data expects it to be
 1. In 1-2 sentences, define end to end testing.
-
+end to end testing mimics human interaction with software by going through the functionality of the site, and not worrying about each component works.
 ## Instructions
 
 ### Task 1: Project Set Up
@@ -43,7 +45,7 @@ Demonstrate your understanding of this week's concepts by answering the followin
 - [x] Clone your OWN version of the repository (Not Lambda's by mistake!)
 - [x] Create a new branch: `git checkout -b <firstName-lastName>`
 - [x] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly
-- [ ] Push commits: `git push origin <firstName-lastName>`
+- [x] Push commits: `git push origin <firstName-lastName>`
 
 ### Task 2: Project Requirements
 
@@ -74,8 +76,8 @@ After finishing your required elements, you can push your work further. These go
 
 - [x] Toggle form component for gluten free crust
 - [x] Turn form element sections into nested routes
-- [ ] Test more of the application with Cypress
-- [ ] Build UI for the eventuality of a network error when POSTing the order
+- [x] Test more of the application with Cypress
+- [x] Build UI for the eventuality of a network error when POSTing the order
 - [ ] Add functionality to your order button that it leads to a Congrats! Pizza is on it's way! page **and** returns a database record of the whole order
 
 ## FAQs
